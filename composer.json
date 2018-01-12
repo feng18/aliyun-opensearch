@@ -1,0 +1,16 @@
+{
+    "name": "sunny/aliyun-opensearch",
+    "description": "Aliyun OpenSearch for laravel5",
+    "authors": [
+        {
+            "name": "Sunny",
+            "email": "sunnyotc@outlook.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Sunny\\OpenSearch\\": "src/"
+        }
+    }
+}
