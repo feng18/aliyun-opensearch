@@ -25,6 +25,19 @@ class OpenSearchServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton('search', function ($app) { //Container
+            return new Search($app['config']);
+        });
+        //$this->app->alias('search', Search::class);
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides(): array
+    {
+        //return ['search'];
     }
 }

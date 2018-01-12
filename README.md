@@ -8,7 +8,7 @@
 
 1. 安装包文件
     ```bash
-    $ composer require sunny/aliyun-opensearch
+    $ composer require feng18/aliyun-opensearch
     ```
 
 ## 配置

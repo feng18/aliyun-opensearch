@@ -10,16 +10,25 @@ require_once("OpenSearch/Autoloader/Autoloader.php");
 use OpenSearch\Client\OpenSearchClient;
 use OpenSearch\Client\SearchClient;
 use OpenSearch\Util\SearchParamsBuilder;
+use Illuminate\Config\Repository;
 
 class Search {
 
+    /**
+     * @var Repository
+     */
+    protected $config;
+
     private $client;
-    public function __construct($opts = array()) {
+
+    public function __construct(Repository $config) {
+        $this->config = $config;
+
         //创建OpenSearchClient客户端对象
-        $this->client = new OpenSearchClient(config('opensearch.ACCESS_KEY_ID'),
-        config('opensearch.ACCESS_KEY_SECRET'),
-        config('opensearch.ENDPOINT'),
-        config('opensearch.options'));
+        $this->client = new OpenSearchClient($this->config->get('opensearch.ACCESS_KEY_ID'),
+        $this->config->get('opensearch.ACCESS_KEY_SECRET'),
+        $this->config->get('opensearch.ENDPOINT'),
+        $this->config->get('opensearch.options'));
     }
 
     /**
@@ -29,9 +38,9 @@ class Search {
      * @param int $hits
      */
     public function getSearch($keyword, $hits = 5) {
-        $app_name = config('opensearch.app_name');
-        $field    = config('opensearch.index_name');
-        $qp       = config('opensearch.app_qp');
+        $app_name = $this->config->get('opensearch.app_name');
+        $field    = $this->config->get('opensearch.index_name');
+        $qp       = $this->config->get('opensearch.app_qp');
         // 实例化一个搜索类
         $searchClient = new SearchClient($this->client);
         // 实例化一个搜索参数类

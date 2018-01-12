@@ -6,6 +6,6 @@ class Search extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'search';
+        return 'search'; //singleton('search',
     }
 }
